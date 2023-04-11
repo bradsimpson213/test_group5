@@ -119,6 +119,7 @@ def upgrade():
     if environment == "production":
         op.execute(f"ALTER TABLE channel_messages SET SCHEMA {SCHEMA};")
 
+    print("MIGRATIONS RAN!")
     # ### end Alembic commands ###
 
 

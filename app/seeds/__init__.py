@@ -28,6 +28,7 @@ def seed():
     seed_servers()
     seed_channels()
     seed_messages()
+    print("SEEDS RAN!")
     # Add other seed functions here
 
 
