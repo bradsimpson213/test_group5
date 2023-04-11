@@ -49,7 +49,7 @@ class User(db.Model, UserMixin):
     if environment == "production":
         dms = db.relationship(
                 "DirectMessage",
-                secondary=f'{schema}.direct_messages',
+                secondary=f'{SCHEMA}.direct_messages',
                 primaryjoin=DirectMessage.user_id == id,
                 secondaryjoin=DirectMessage.recipient_id == id,
                 overlaps="recipient"
