@@ -108,11 +108,11 @@ def undo_messages():
     db.session.commit()
 
 
-def undo_users():
-    if environment == "production":
-        db.session.execute(
-            f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
-    else:
-        db.session.execute(text("DELETE FROM users"))
+# def undo_users():
+#     if environment == "production":
+#         db.session.execute(
+#             f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+#     else:
+#         db.session.execute(text("DELETE FROM users"))
 
-    db.session.commit()
+#     db.session.commit()

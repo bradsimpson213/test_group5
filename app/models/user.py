@@ -43,13 +43,24 @@ class User(db.Model, UserMixin):
     # # Relationship
     servers = db.relationship(
         "Server",  back_populates="owner", cascade="all, delete-orphan")
-    direct_messages = db.relationship(
-        "DirectMessage",
-        secondary='direct_messages',
-        primaryjoin=DirectMessage.user_id == id,
-        secondaryjoin=DirectMessage.recipient_id == id,
-        overlaps="recipient"
-    )
+    
+    if environment == "production":
+        direct_messages = db.relationship(
+            "DirectMessage",
+            secondary='direct_messages',
+            primaryjoin=SCHEMA.DirectMessage.user_id == id,
+            secondaryjoin=SCHEMA.DirectMessage.recipient_id == id,
+            overlaps="recipient"
+        )
+        
+    else: 
+           direct_messages = db.relationship(
+            "DirectMessage",
+            secondary='direct_messages',
+            primaryjoin=DirectMessage.user_id == id,
+            secondaryjoin=DirectMessage.recipient_id == id,
+            overlaps="recipient"
+        )
 
     channel_messages = db.relationship(
         "ChannelMessage", back_populates='sender')
