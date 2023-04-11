@@ -48,8 +48,8 @@ class User(db.Model, UserMixin):
         direct_messages = db.relationship(
             "DirectMessage",
             secondary='direct_messages',
-            primaryjoin=add_prefix_for_prod("direct_messages.user_id") == id,
-            secondaryjoin=add_prefix_for_prod("direct_messages.recipient_id") == id,
+            primaryjoin=add_prefix_for_prod("DirectMessages.user_id") == id,
+            secondaryjoin=add_prefix_for_prod("DirectMessages.recipient_id") == id,
             overlaps="recipient"
         )
 
